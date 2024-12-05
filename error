@@ -1,4 +1,11 @@
-An error occurred: 'utf-8' codec can't decode byte 0x9a in position 0: invalid start byte
+sisi client
+[INFO] [1733384011.471219]: Server response: Error: Invalid sensor data format.
+
+sisi server
+[INFO] [1733384521.885990]: Detect Object Server is ready.
+R0404] [1733384534.740824]: Raw data from sensor: R0337
+R0404] [1733384534.749080]: Invalid data format: R0337
+
 
 
 [INFO] [1733382593.960618]: Requesting detection with threshold: 30.0 cm
