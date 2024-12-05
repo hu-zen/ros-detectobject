@@ -4,11 +4,12 @@ import rospy
 from beginner_tutorials.srv import detectobject
 
 def detect_object_client(threshold):
-    rospy.wait_for_service('detect_object')
+    """
+    Call the detectobject service with a threshold value.
+    """
+    rospy.wait_for_service('detectobject')
     try:
-        # Menghubungkan dengan service detect_object
-        detect_object = rospy.ServiceProxy('detect_object', detectobject)
-        # Memanggil service dan mengirimkan threshold
+        detect_object = rospy.ServiceProxy('detectobject', detectobject)
         response = detect_object(threshold)
         return response.result
     except rospy.ServiceException as e:
@@ -18,8 +19,8 @@ def detect_object_client(threshold):
 if __name__ == "__main__":
     rospy.init_node('detectobject_client')
 
-    # Tentukan threshold untuk deteksi
-    threshold = 30.0  # Dalam cm
+    # Specify the threshold distance
+    threshold = 30.0  # Adjust as needed
 
     rospy.loginfo(f"Requesting detection with threshold: {threshold} cm")
     result = detect_object_client(threshold)
