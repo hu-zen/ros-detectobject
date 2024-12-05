@@ -6,7 +6,9 @@ from beginner_tutorials.srv import detectobject
 def detect_object_client(threshold):
     rospy.wait_for_service('detect_object')
     try:
+        # Menyambung ke service detect_object
         detect_object = rospy.ServiceProxy('detect_object', detectobject)
+        # Memanggil service dengan threshold sebagai parameter tunggal
         response = detect_object(threshold)
         return response.result
     except rospy.ServiceException as e:
