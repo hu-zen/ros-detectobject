@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import rospy
-from your_package_name.srv import ReadDistance, ReadDistanceResponse
+from your_package_name.srv import detectobject, detectobjectResponse
 import serial
 
 def read_sensor_cm(port='/dev/ttyUSB0', baudrate=57600):
@@ -27,17 +27,17 @@ def handle_read_distance(req):
     distance = read_sensor_cm()
     if distance is not None:
         rospy.loginfo(f"Distance measured: {distance:.1f} cm")
-        return ReadDistanceResponse(distance)
+        return detectobjectResponse(distance)
     else:
         rospy.logwarn("Failed to read distance.")
-        return ReadDistanceResponse(-1.0)  # Return -1.0 to indicate an error
+        return detectobjectResponse(-1.0)  # Return -1.0 to indicate an error
 
 def distance_server():
     """
     Initializes the distance reading server node.
     """
     rospy.init_node('distance_server')
-    service = rospy.Service('read_distance', ReadDistance, handle_read_distance)
+    service = rospy.Service('read_distance', detectobject, handle_read_distance)
     rospy.loginfo("Distance server ready.")
     rospy.spin()
 
