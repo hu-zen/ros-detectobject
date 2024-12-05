@@ -12,10 +12,10 @@ def handle_detect_object(req):
         rospy.loginfo(f"Raw data from sensor: {raw_data}")
         ser.close()
 
-        # Periksa apakah data valid (format harus mulai dengan 'R' dan panjangnya 5 karakter)
-        if raw_data.startswith("R") and len(raw_data) == 5:
+        # Periksa apakah data valid (data dimulai dengan 'R' dan hanya berisi angka setelahnya)
+        if raw_data.startswith("R") and raw_data[1:].isdigit():
             rospy.loginfo(f"Valid data received: {raw_data}")
-            # Mengambil data jarak (misalnya 0300 berarti 300mm = 30cm)
+            # Mengambil data jarak (misalnya 0337 berarti 337mm = 33.7cm)
             distance = float(raw_data[1:]) / 10.0  # Konversi mm ke cm
             rospy.loginfo(f"Distance: {distance} cm, Threshold: {req.threshold} cm")
 
