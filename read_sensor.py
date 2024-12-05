@@ -1,8 +1,8 @@
 import serial
 
-def read_sensor_raw(port='/dev/ttyUSB0', baudrate=57600):
+def read_sensor_cm(port='/dev/ttyUSB0', baudrate=57600):
     """
-    Membaca data mentah dari sensor MaxBotix MB1403 HRUSB.
+    Membaca data dari sensor MaxBotix HRUSB dan mengonversinya ke jarak dalam cm.
     """
     try:
         # Hubungkan ke port serial
@@ -12,8 +12,14 @@ def read_sensor_raw(port='/dev/ttyUSB0', baudrate=57600):
         while True:
             # Membaca data mentah dari sensor
             raw_data = ser.readline().decode('utf-8', errors='ignore').strip()
-            if raw_data:
-                print(f"Raw Data: {raw_data}")  # Tampilkan data mentah
+            
+            if raw_data.startswith('R') and raw_data[1:].isdigit():
+                # Ekstrak angka dari data valid dan konversi ke cm
+                mm_distance = int(raw_data[1:])  # Ambil angka setelah 'R'
+                cm_distance = mm_distance / 10.0  # Konversi ke cm
+                print(f"Distance: {cm_distance:.1f} cm (Raw: {raw_data})")
+            elif raw_data:  # Data ada tetapi tidak valid
+                print(f"Invalid Data: {raw_data}")
             else:
                 print("Raw Data: (kosong)")  # Jika data kosong
     except serial.SerialException as e:
@@ -22,5 +28,4 @@ def read_sensor_raw(port='/dev/ttyUSB0', baudrate=57600):
         print(f"Unexpected error: {e}")
 
 if __name__ == "__main__":
-    # Jalankan fungsi untuk membaca data
-    read_sensor_raw()
+    read_sensor_cm()
