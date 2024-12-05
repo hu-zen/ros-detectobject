@@ -1,3 +1,3 @@
+float32 threshold
 ---
-float32 threshold  # Batas jarak untuk deteksi
-string result      # Hasil deteksi (ada/tidak ada objek)
+string result
