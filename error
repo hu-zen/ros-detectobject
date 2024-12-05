@@ -1,0 +1,19 @@
+[INFO] [1733382593.960618]: Requesting detection with threshold: 30.0 cm
+Traceback (most recent call last):
+  File "/home/pi/ros_catkin_ws/devel/lib/beginner_tutorials/detectobject_client.py", line 15, in <module>
+    exec(compile(fh.read(), python_script, 'exec'), context)
+  File "/home/pi/ros_catkin_ws/src/beginner_tutorials/scripts/detectobject_client.py", line 23, in <module>
+    result = detect_object_client(threshold)
+  File "/home/pi/ros_catkin_ws/src/beginner_tutorials/scripts/detectobject_client.py", line 10, in detect_object_client
+    response = detect_object(threshold)
+  File "/home/pi/ros_catkin_ws/src/ros_comm/rospy/src/rospy/impl/tcpros_service.py", line 442, in __call__
+    return self.call(*args, **kwds)
+  File "/home/pi/ros_catkin_ws/src/ros_comm/rospy/src/rospy/impl/tcpros_service.py", line 498, in call
+    request = rospy.msg.args_kwds_to_message(self.request_class, args, kwds) 
+  File "/home/pi/ros_catkin_ws/src/ros_comm/rospy/src/rospy/msg.py", line 122, in args_kwds_to_message
+    return data_class(*args)
+  File "/home/pi/ros_catkin_ws/devel/lib/python3/dist-packages/beginner_tutorials/srv/_detectobject.py", line 33, in __init__
+    super(detectobjectRequest, self).__init__(*args, **kwds)
+  File "/home/pi/ros_catkin_ws/src/genpy/src/genpy/message.py", line 354, in __init__
+    raise TypeError('Invalid number of arguments, args should be %s' % str(self.__slots__) + ' args are' + str(args))
+TypeError: Invalid number of arguments, args should be [] args are(30.0,)
