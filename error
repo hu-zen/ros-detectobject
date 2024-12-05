@@ -1,3 +1,6 @@
+An error occurred: 'utf-8' codec can't decode byte 0x9a in position 0: invalid start byte
+
+
 [INFO] [1733382593.960618]: Requesting detection with threshold: 30.0 cm
 Traceback (most recent call last):
   File "/home/pi/ros_catkin_ws/devel/lib/beginner_tutorials/detectobject_client.py", line 15, in <module>
